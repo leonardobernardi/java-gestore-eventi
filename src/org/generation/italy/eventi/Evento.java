@@ -3,7 +3,7 @@ package org.generation.italy.eventi;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Evento {
+public class Evento implements Comparable<Evento>{
 			
 	private String titolo;
 	private LocalDate data;
@@ -110,4 +110,12 @@ public class Evento {
 		return postiDaValidare > 0;
 	}
 	
+	@Override
+	public int compareTo(Evento o) {
+	if(getData().isBefore(o.getData())) {
+		return -1;
+	}else if(getData().isAfter(o.getData())){
+		return 1;
+	}return 0;
+	}
 }
