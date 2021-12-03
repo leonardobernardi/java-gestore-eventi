@@ -10,7 +10,7 @@ public class Evento {
 	private int postiTotale;
 	private int postiPrenotati = 0;
 	
-	public Evento(String titolo, LocalDate data, int postiTotale) throws IllegalArgumentException {
+	public Evento(String titolo, LocalDate data, int postiTotale) throws IllegalArgumentException, Exception{
 		this.titolo = titolo;
 		if(isValidDate(data)){
 			this.data = data;
@@ -22,7 +22,7 @@ public class Evento {
 			this.postiTotale = postiTotale;
 		}else {
 			//errore
-			throw new IllegalArgumentException("Posti inferiori a 1");
+			throw new Exception("Posti inferiori a 1");
 		}
 	}
 	
@@ -78,22 +78,22 @@ public class Evento {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/uuuu");
 		return data.format(formatter);
 	}
-	public void prenota() throws Exception{
+	public void prenota() throws IllegalArgumentException, Exception{
 		if(!isValidDate(this.data)) {
-			throw new Exception("L'evento evento è già passato");
+			throw new IllegalArgumentException("L'evento evento è già passato");
 		}else if(!isValidPosti(this.postiTotale)) {
 			throw new Exception("Posti esauriti");
 		}
 		this.postiPrenotati += 1;
-		this.postiTotale -= 1;
 	}
 
-	public void disdici() throws Exception {
+	public void disdici() throws IllegalArgumentException, Exception {
 		if(!isValidDate(this.data)) {
-			throw new Exception("L'evento evento è già passato");
+			throw new IllegalArgumentException("L'evento evento è già passato");
 		}else if(this.postiPrenotati < 1) {
 			throw new Exception("Non ci sono posti prenotati");
 		}		
+		this.postiPrenotati -= 1;
 	}
 
 	@Override
