@@ -9,24 +9,28 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
+		
+		
 		Scanner input = new Scanner(System.in);
 		
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/uuuu");
+		int giorno = 0;
+		int mese = 0;
+		int anno = 0;
+		
 		System.out.println("Inserire nome evento: ");
 		String nome = input.nextLine();
 		System.out.println("Inserire giorno evento: ");
-		String giorno = input.nextLine();
+		giorno = input.nextInt();
 		System.out.println("Inserire mese evento: ");
-		String mese = input.nextLine();
+		mese = input.nextInt();
 		System.out.println("Inserire anno evento: ");
-		String anno = input.nextLine();
-		String data = giorno + "/" + mese + "/" + anno;
+		anno = input.nextInt();
 		System.out.println("Inserire totale posti: ");
 		int postiTotale = input.nextInt();
 		
 		
 			try {
-				Evento evento1 = new Evento(nome, LocalDate.parse(data, formatter), postiTotale);
+				Evento evento1 = new Evento(nome, LocalDate.of(anno, mese, giorno), postiTotale);
 				System.out.println("Inserire il numero delle prenotazioni desiderate (0 per nessuna): ");
 				int counter = input.nextInt();
 				while(counter > 0) {
@@ -61,6 +65,7 @@ public class Main {
 					System.out.println("Si e' verificato un errore: " + eA.getMessage()); 
 					}
 			input.close();
+		
 			
 		
 		
