@@ -1,5 +1,6 @@
 package org.generation.italy.eventi;
 
+import java.math.MathContext;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,6 +8,7 @@ import java.util.EventObject;
 import java.util.List;
 
 
+@SuppressWarnings("unused")
 public class ProgrammEventi {
 	private String titolo;
 	private List<Evento> eventi;
@@ -46,7 +48,5 @@ public class ProgrammEventi {
 			oList = oList + "\n" + e.getData() + "-" + e.getTitolo();
 		}return oList;
 	}
-	
-	
 	
 }
